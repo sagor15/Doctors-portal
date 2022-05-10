@@ -1,7 +1,12 @@
 module.exports = {
   content: ["./src/**/*.{html,js}"],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'banner-bg': "url('../doctor-portals/src/assets/images/bg.png')",
+        'footer-texture': "url('./src/assets/images/appointment.png')",
+      }
+    },
   },
   daisyui: {
     themes: [
