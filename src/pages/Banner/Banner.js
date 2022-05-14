@@ -5,21 +5,22 @@ import bg from "../../assets/images/bg.png";
 
 
 const Banner = () => {
-    return (
-      <section style={{background:`url(${bg})`}} class='py-15 bg-fixed'>
-        <div  class="hero min-h-screen container  " >
-        <div class={`hero-content flex-col lg:flex-row-reverse  `}>
-          <img src={chair} class="max-w-sm rounded-lg shadow-2xl sm:z-10 lg:order-first order-last " />
-          <div>
-            <h1 class="text-5xl font-bold">Your New Smile Starts Here</h1>
-            <p class="py-6">Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+  return (
+    <section >
+      <div className="hero min-h-screen" style={{background:`url(${chair})` , backgroundRepeat: 'no-repeat' , backgroundSize:'cover',backgroundAttachment:'fixed'} }>
+        <div className="hero-overlay bg-opacity-60"></div>
+        <div className="hero-content text-center text-neutral-content">
+          <div className="max-w-md">
+          <h1 className="text-5xl text-white font-bold">Your New Smile Starts Here</h1>
+            <p className="py-6 text-light font-bold">Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
             Lorem Ipsum has been the industry's standard dummy text ever since the</p>
-            <button class="btn btn-primary font-bold text-white bg-gradient-to-r from-secondary to-primary hover:from-primary hover:to-secondary">Get Started</button>
+            <button className="btn btn-primary font-bold text-white bg-gradient-to-r from-secondary to-primary hover:from-primary hover:to-secondary">Get Started</button>
           </div>
         </div>
       </div>
-      </section>
-    );
+
+    </section>
+  );
 };
 
 export default Banner;

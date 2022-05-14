@@ -10,23 +10,29 @@ const AppointmentBanner = ({date , setDate}) => {
 
 
     return (
-        <div class="hero min-h-screen ">
-            <div class="hero-content flex-col lg:flex-row-reverse">
-                <div>
-                <img src={chair} class="max-w-sm rounded-lg shadow-2xl" />
-                </div>
-                <div>
-                    <DayPicker
+
+
+
+        <section >
+        <div className="hero min-h-screen" style={{background:`url(${chair})` , backgroundRepeat: 'no-repeat' , backgroundSize:'cover',backgroundAttachment:'fixed'} }>
+          <div className="hero-overlay bg-opacity-60"></div>
+          <div className="hero-content text-center text-neutral-content">
+            <div className="max-w-md text-white font-bold">
+            <DayPicker
 
                         mode="single"
                         selected={date}
                         onSelect={setDate}
 
                     />
-                    {/* <p className='text-xl font-bold'>You picked }.</p> */}
-                </div>
             </div>
+          </div>
         </div>
+  
+      </section>
+
+
+
     );
 };
 
