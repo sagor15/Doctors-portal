@@ -7,6 +7,7 @@ import Loading from '../../SharedPages/Loading';
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from 'react-router-dom';
 import { async } from '@firebase/util';
+import useToken from '../../hooks/useToken';
 
 const SignUp = () => {
 
@@ -17,7 +18,7 @@ const SignUp = () => {
   const { register, formState: { errors }, handleSubmit } = useForm();
   const [updateProfile, updating, UpdateError] = useUpdateProfile(auth);
   const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [
     createUserWithEmailAndPassword,
     user,
@@ -32,7 +33,7 @@ const SignUp = () => {
     
 };
 
-
+const [token] = useToken(guser || user)
 
   let SignInError;
 
@@ -42,8 +43,8 @@ const SignUp = () => {
   if (gerror || error || UpdateError) {
     SignInError = <p>{gerror?.message || error?.message || UpdateError.message}</p>
   }
-  if (guser || user) {
-    console.log(guser || user);
+  if (token) {
+    navigate('/appointment');
     
   }
 

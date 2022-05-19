@@ -22,7 +22,7 @@ const Services = () => {
 
             <div className="hero min-h-screen container mx-auto ">
                 <div className="hero-content max-w-4xl gap-16 flex-col lg:justify-center lg:flex-row">
-                    <img src={thretment} className="max-w-sm rounded-lg shadow-2xl" />
+                    <img src={thretment} className="max-w-xs  rounded-lg shadow-2xl" />
                     <div className="">
                         <h1 className="text-5xl font-bold">Box Office News!</h1>
                         <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>

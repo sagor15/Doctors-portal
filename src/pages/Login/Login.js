@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import appointment from "../../assets/images/bg.png";
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from "../../firebase.init";
 import { useForm } from "react-hook-form";
 import Loading from '../../SharedPages/Loading';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import useToken from '../../hooks/useToken';
 
 const Login = () => {
     const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth);
@@ -26,17 +27,23 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
     let from = location.state?.from?.pathname || "/";
-
+    const [token] =useToken(user || guser);
+    useEffect(()=>{
+        if(token){
+            navigate(from, {replace:true});
+        }
+    },[token,from,navigate]);
     if( gloading || loading){
         return <Loading></Loading>
     }
     if(gerror || error){
         SignInError = <p>{gerror?.message || error?.message}</p>
     }
-    if (guser || user) {
+    
+    // if (token) {
         
-        navigate(from, {replace:true});
-    }
+    //     navigate(from, {replace:true});
+    // }
 
     return (
         <section >

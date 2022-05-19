@@ -2,16 +2,31 @@ import { format } from 'date-fns';
 import React, { useEffect, useState } from 'react';
 import AppointmentCard from './AppointmentCard';
 import BookingModal from './BookingModal';
+import { useQuery } from 'react-query';
+import Loading from "../../SharedPages/Loading";
 
 const AvailableAppointment = ({ date, setDate }) => {
-    const [services , setServices] = useState([]);
-    const [treathment , setTreatment] = useState(null);
+    // const [services , setServices] = useState([]);
+    const [treathment , setTreathment] = useState(null);
 
-    useEffect(()=>{
-        fetch('http://localhost:5000/service')
+    const formattedDate = format(date,'PP');
+
+
+
+    const { isLoading, data:services,refetch } = useQuery(['available',formattedDate], () =>
+    fetch(` https://serene-refuge-65554.herokuapp.com/available?date=${formattedDate}`)
         .then(res=>res.json())
-        .then(data=> setServices(data));
-    },[])
+     
+   )
+   if(isLoading){
+       return <Loading></Loading>
+   }
+
+    // useEffect(()=>{
+    //     fetch(` https://serene-refuge-65554.herokuapp.com/available?date=${formattedDate}`)
+    //     .then(res=>res.json())
+    //     .then(data=> setServices(data));
+    // },[])
 
 
 
@@ -26,11 +41,11 @@ const AvailableAppointment = ({ date, setDate }) => {
              services.map(service=> <AppointmentCard
              key={service._id}
              service={service}
-             setTreatment={setTreatment}
+             setTreathment={setTreathment}
              ></AppointmentCard>)
          }
          </div>
-         {treathment && <BookingModal date={date} treathment={treathment}></BookingModal>}
+         {treathment && <BookingModal refetch={refetch} date={date} setTreathment={setTreathment} treathment={treathment}></BookingModal>}
      </div>
     );
 };
